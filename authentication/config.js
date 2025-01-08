@@ -29,8 +29,8 @@ passport.deserializeUser(async (id, done) => {
   return await db
     .query("SELECT * FROM users WHERE id = $1", [id])
     .then((result) => {
-      const { id, username } = result.rows[0];
-      done(null, { id, username });
+      const { id, username, full_name, is_member } = result.rows[0];
+      done(null, { id, username, full_name, is_member });
     })
     .catch((error) => done(error));
 });
