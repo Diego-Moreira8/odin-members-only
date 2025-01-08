@@ -1,11 +1,17 @@
-<h1>Signup</h1>
+<h1>Criar Conta</h1>
 
 <form action="/signup" method="post">
-  <label for="username">Username:</label>
+  <label for="full_name">Nome completo:</label>
+  <input type="text" name="full_name" id="full_name" />
+
+  <label for="username">Nome de usuário:</label>
   <input type="text" name="username" id="username" />
 
-  <label for="password">Password:</label>
+  <label for="password">Senha:</label>
   <input type="password" name="password" id="password" />
 
-  <button type="submit">Signup</button>
+  <input type="checkbox" name="is_member" id="is_member" />
+  <label for="is_member">É membro</label>
+
+  <button type="submit">Registrar</button>
 </form>

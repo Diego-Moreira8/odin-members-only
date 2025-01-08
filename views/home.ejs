@@ -1,4 +1,8 @@
-<h1>Home</h1>
+<h1>Início</h1>
 
-<a href="/login">Login</a>
-<a href="/signup">Signup</a>
+<% if (locals.user) { %>
+<p>Bem-vindo, <%= locals.user.username %>!</p>
+<% } else { %>
+<a href="/login">Entrar</a>
+<a href="/signup">Criar conta</a>
+<% } %>
