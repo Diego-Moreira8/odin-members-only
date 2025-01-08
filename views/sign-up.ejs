@@ -1,0 +1,39 @@
+<h1>Criar Conta</h1>
+
+<%- include("form-errors", {errors}) %>
+
+<form action="/sign-up" method="post">
+  <div class="formRow">
+    <label for="full_name">Nome completo:</label>
+    <input type="text" name="full_name" id="full_name" maxlength="250" />
+  </div>
+
+  <div class="formRow">
+    <label for="username">Nome de usuário:</label>
+    <input type="text" name="username" id="username" maxlength="250" required />
+  </div>
+
+  <div class="formRow">
+    <label for="password">Senha:</label>
+    <input
+      type="password"
+      name="password"
+      id="password"
+      minlength="8"
+      maxlength="250"
+      required
+    />
+  </div>
+
+  <div class="formRow">
+    <label for="password_confirmation">Confirmar a senha:</label>
+    <input
+      type="password"
+      name="password_confirmation"
+      id="password_confirmation"
+      required
+    />
+  </div>
+
+  <div class="formRow"><button type="submit">Registrar</button></div>
+</form>
