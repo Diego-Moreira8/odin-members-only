@@ -16,6 +16,14 @@ authRouter.post(
   })
 );
 
+authRouter.get("/logout", (req, res, next) => {
+  req.logout((error) => {
+    if (error) return next(error);
+
+    res.redirect("/");
+  });
+});
+
 authRouter.get("/signup", (req, res, next) => {
   res.render("signup");
 });
@@ -26,9 +34,9 @@ authRouter.post("/signup", async (req, res, next) => {
   await db
     .query(
       `
-      INSERT INTO users (full_name, username, password, is_member)
-      VALUES ($1, $2, $3, $4);
-    `,
+        INSERT INTO users (full_name, username, password, is_member)
+        VALUES ($1, $2, $3, $4);
+      `,
       [full_name, username, password, !!is_member]
     )
     .then(() => res.redirect("/"))

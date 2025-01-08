@@ -2,6 +2,7 @@
 
 <% if (locals.user) { %>
 <p>Bem-vindo, <%= locals.user.username %>!</p>
+<a href="/logout">Sair</a>
 <% } else { %>
 <a href="/login">Entrar</a>
 <a href="/signup">Criar conta</a>
