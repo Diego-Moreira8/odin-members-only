@@ -30,7 +30,7 @@ authRouter.get("/signup", (req, res, next) => {
 });
 
 authRouter.post("/signup", async (req, res, next) => {
-  const { full_name, username, password, is_member } = req.body;
+  const { full_name, username, password } = req.body;
 
   bcrypt.hash(password, 10, async (err, hashedPassword) => {
     if (err) next(err);
@@ -38,10 +38,10 @@ authRouter.post("/signup", async (req, res, next) => {
     await db
       .query(
         `
-          INSERT INTO users (full_name, username, password, is_member)
-          VALUES ($1, $2, $3, $4);
+          INSERT INTO users (full_name, username, password)
+          VALUES ($1, $2, $3);
         `,
-        [full_name, username, hashedPassword, !!is_member]
+        [full_name, username, hashedPassword]
       )
       .then(() => res.redirect("/"))
       .catch((err) => next(err));

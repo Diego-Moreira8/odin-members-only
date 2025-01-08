@@ -13,7 +13,7 @@ const { db } = require("./config");
         full_name VARCHAR(250),
         username VARCHAR(250) UNIQUE NOT NULL,
         password VARCHAR(250) NOT NULL,
-        is_member BOOLEAN NOT NULL
+        is_member BOOLEAN NOT NULL DEFAULT FALSE
       );
     `
     )
