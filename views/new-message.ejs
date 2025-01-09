@@ -1,0 +1,26 @@
+<h1>Nova Mensagem</h1>
+
+<% if (locals.user) { %> <%- include("form-errors", {errors}) %>
+
+<form action="/criar-mensagem" method="post">
+  <div class="formRow">
+    <label for="title">Título da mensagem (opcional):</label>
+    <input type="text" name="title" id="title" maxlength="250" />
+  </div>
+
+  <div class="formRow">
+    <label for="content">Digite sua mensagem:</label>
+    <textarea
+      name="content"
+      id="content"
+      rows="10"
+      maxlength="500"
+      required
+    ></textarea>
+  </div>
+
+  <button type="submit">Enviar mensagem</button>
+</form>
+<% } else { %>
+<p><i>Você precisa estar conectado para enviar uma mensagem!</i></p>
+<% } %>

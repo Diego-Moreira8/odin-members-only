@@ -1,16 +1,40 @@
 <h1>Início</h1>
 
 <% if (locals.user) { %>
-<p>Bem-vindo, <%= locals.user.full_name %>!</p>
+<p>Bem-vindo, <%= locals.user.full_name || locals.user.username %>!</p>
+<a href="/log-out">Sair</a>
 
 <% if (locals.user.is_member) { %>
 <p>Você é um membro!</p>
 <% } else { %>
+<p>
+  Você precisa ser um membro para ver por quem e quando as mensagens foram
+  postadas!
+</p>
 <a href="/seja-membro">Torne-se um membro</a>
 <% } %>
 
-<a href="/log-out">Sair</a>
+<a href="/criar-mensagem">Criar uma mensagem</a>
 <% } else { %>
 <a href="/log-in">Entrar</a>
 <a href="/sign-up">Criar conta</a>
+<% } %>
+
+<h2>Mensagens</h2>
+
+<% if (locals.messages.length > 0) { %>
+<ul>
+  <% locals.messages.forEach(msg => { %>
+  <li>
+    <% if (locals.user?.is_member) { %>
+    <p><%= msg.full_name || msg.username %> em <%= msg.created_at %></p>
+    <% } %> <% if (msg.title) { %>
+    <p><b><%= msg.title %></b></p>
+    <% } %>
+    <p><%= msg.content %></p>
+  </li>
+  <% }) %>
+</ul>
+<% } else { %>
+<p><i>Ninguém postou uma mensagem ainda!</i></p>
 <% } %>
