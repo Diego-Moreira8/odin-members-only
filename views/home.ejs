@@ -2,9 +2,13 @@
 
 <% if (locals.user) { %>
 <p>Bem-vindo, <%= locals.user.full_name %>!</p>
+
 <% if (locals.user.is_member) { %>
 <p>Você é um membro!</p>
+<% } else { %>
+<a href="/seja-membro">Torne-se um membro</a>
 <% } %>
+
 <a href="/log-out">Sair</a>
 <% } else { %>
 <a href="/log-in">Entrar</a>
