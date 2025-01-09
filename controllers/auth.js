@@ -40,7 +40,6 @@ const signUpValidators = [
           return true;
         })
         .catch((err) => {
-          req.locals = { queryError: err };
           throw err;
         });
     }),
@@ -115,13 +114,6 @@ const getSignUp = (req, res, next) => {
 
 const postSignUp = [
   signUpValidators,
-
-  function checkForQueryError(req, res, next) {
-    if (req.locals?.queryError) {
-      next(req.locals.queryError);
-    }
-    next();
-  },
 
   async function validateForm(req, res, next) {
     const errors = validationResult(req);
