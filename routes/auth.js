@@ -7,15 +7,54 @@ const { body, validationResult } = require("express-validator");
 const authRouter = Router();
 
 authRouter.get("/log-in", (req, res, next) => {
-  res.render("log-in");
+  res.render("log-in", { errors: [] });
 });
 
 authRouter.post(
   "/log-in",
-  passport.authenticate("local", {
-    successRedirect: "/",
-    failureRedirect: "/log-in",
-  })
+
+  body("username")
+    .trim()
+    .notEmpty()
+    .withMessage("Um nome de usuário precisa ser fornecido")
+    .isLength({ max: 250 })
+    .withMessage("O nome de usuário pode ter no máximo 250 caracteres"),
+
+  body("password")
+    .notEmpty()
+    .withMessage("Uma senha precisa ser fornecida")
+    .isLength({ max: 250 })
+    .withMessage("Uma senha pode ter no máximo 250 caracteres"),
+
+  (req, res, next) => {
+    const formErrors = validationResult(req);
+
+    if (!formErrors.isEmpty()) {
+      return res.status(400).render("log-in", { errors: formErrors.array() });
+    }
+
+    next();
+  },
+
+  (req, res, next) => {
+    passport.authenticate("local", (err, user, info) => {
+      if (err) {
+        return next(err);
+      }
+      if (!user) {
+        return res
+          .status(401)
+          .render("log-in", { errors: [{ msg: info.message }] });
+      }
+
+      req.logIn(user, (err) => {
+        if (err) {
+          return next(err);
+        }
+        res.redirect("/");
+      });
+    })(req, res, next);
+  }
 );
 
 authRouter.get("/log-out", (req, res, next) => {

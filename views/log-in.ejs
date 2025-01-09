@@ -1,11 +1,23 @@
 <h1>Entrar</h1>
 
-<form action="/log-in" method="post">
-  <label for="username">Nome de usuário:</label>
-  <input type="text" name="username" id="username" />
+<%- include("form-errors", {errors}) %>
 
-  <label for="password">Senha:</label>
-  <input type="password" name="password" id="password" />
+<form action="/log-in" method="post">
+  <div class="formRow">
+    <label for="username">Nome de usuário:</label>
+    <input type="text" name="username" id="username" maxlength="250" required />
+  </div>
+
+  <div class="formRow">
+    <label for="password">Senha:</label>
+    <input
+      type="password"
+      name="password"
+      id="password"
+      maxlength="250"
+      required
+    />
+  </div>
 
   <button type="submit">Entrar</button>
 </form>
