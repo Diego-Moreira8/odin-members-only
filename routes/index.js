@@ -17,7 +17,8 @@ indexRouter.get("/", async (req, res, next) => {
         SELECT m.id, created_at, full_name, username, user_id, title, content
         FROM messages AS m
         JOIN users AS u
-        ON u.id = m.user_id;
+        ON u.id = m.user_id
+        ORDER BY created_at DESC;
       `
     )
     .then((result) => {
