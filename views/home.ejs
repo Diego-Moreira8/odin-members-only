@@ -1,50 +1,54 @@
-<% if (locals.user) { %>
-<a class="newMsg" href="/criar-mensagem">Nova mensagem</a>
-
-  <% if (!locals.user.is_member) { %>
-    <div class="tooltip info">
-      <p>
-        <a href="/seja-membro">Torne-se um membro</a>
-        para ver por quem e quando as mensagens foram postadas!
-      </p>
-    </div>
+<div class="messagesContainer">
+  <% if (locals.user) { %>
+  <a class="newMsg" href="/criar-mensagem">Nova mensagem</a>
+  
+    <% if (!locals.user.is_member) { %>
+      <div class="tooltip info">
+        <p>
+          <a href="/seja-membro">Torne-se um membro</a>
+          para ver por quem e quando as mensagens foram postadas!
+        </p>
+      </div>
+    <% } %>
   <% } %>
-<% } %>
-
-<h1>Mensagens</h1>
-
-<% if (locals.messages.length > 0) { %>
-<ul class="allMessages">
-  <% locals.messages.forEach(msg => { %>
-  <li>
-    <% if (locals.user?.is_member) { %>
-    <p class="messageInfo">
-      <i>
-        <%= msg.full_name || msg.username %>
-         em
-        <span class="msgDate"><%= msg.created_at %></span>
-      </i>
-    </p>
-    <% } %>
-    
-    <% if (msg.title) { %>
-    <h2 class="messageTitle"><%= msg.title %></h2>
-    <% } %>
-
-    <p><%= msg.content %></p>
-
-    <% if (locals.user) { %>
-      <% if (locals.user?.is_admin || msg.user_id === locals.user.id) { %>
-        <form action="<%= `/delete-message/${msg.id}` %>" method="post">
-          <button type="submit" class="danger">Apagar</button>
-        </form>
+  
+  <h1>Mensagens</h1>
+  
+  <% if (locals.messages.length > 0) { %>
+  <ul class="allMessages">
+    <% locals.messages.forEach(msg => { %>
+    <% const isMessageAuthor = msg.user_id === locals.user?.id %>
+  
+    <li>
+      <% if (locals.user?.is_member || isMessageAuthor) { %>
+        <p class="messageInfo">
+          <i>
+            <%= isMessageAuthor ? "Você" : msg.full_name || msg.username %>
+            em
+            <span class="msgDate"><%= msg.created_at %></span>
+          </i>
+        </p>
       <% } %>
-    <% } %>
-  </li>
-  <% }) %>
-</ul>
-<% } else { %>
-<p><i>Ninguém postou uma mensagem ainda!</i></p>
-<% } %>
-
-<%- include("formatClientDates") %>
+  
+      <% if (msg.title) { %>
+      <h2 class="messageTitle"><%= msg.title %></h2>
+      <% } %>
+  
+      <p><%= msg.content %></p>
+  
+      <% if (locals.user) { %>
+        <% if (locals.user?.is_admin || isMessageAuthor) { %>
+          <form action="<%= `/delete-message/${msg.id}` %>" method="post">
+            <button type="submit" class="danger">Apagar</button>
+          </form>
+        <% } %>
+      <% } %>
+    </li>
+    <% }) %>
+  </ul>
+  <% } else { %>
+  <p><i>Ninguém postou uma mensagem ainda!</i></p>
+  <% } %>
+  
+  <%- include("formatClientDates") %>
+</div>

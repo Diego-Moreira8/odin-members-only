@@ -50,6 +50,7 @@ button {
   border-radius: 1rem;
   box-shadow: $shadow;
   margin-bottom: 1rem;
+  max-width: 500px;
 
   &.info {
     background-color: $secondary-color;
@@ -122,44 +123,50 @@ body {
     flex-grow: 1;
     padding: 1rem;
 
-    a.newMsg {
-      position: fixed;
-      bottom: 3rem;
-      right: 1rem;
-      background-color: $ok;
-      color: $background-color;
-      font-weight: bold;
-      padding: 0.75rem 1rem;
-      border-radius: 1rem;
-      text-decoration: none;
-      box-shadow: $shadow;
-    }
-
-    .allMessages {
-      max-width: 500px;
-      margin: 0 auto;
+    .messagesContainer {
       display: flex;
       flex-flow: column;
-      gap: 1rem;
-      margin-bottom: 4rem;
+      align-items: center;
 
-      text-align: center;
-
-      li {
-        background-color: #fff;
+      a.newMsg {
+        position: fixed;
+        bottom: 3rem;
+        right: 1rem;
+        background-color: $ok;
+        color: $background-color;
+        font-weight: bold;
+        padding: 0.75rem 1rem;
         border-radius: 1rem;
-        padding: 1rem;
-        box-shadow: $shadow-light;
+        text-decoration: none;
+        box-shadow: $shadow;
+      }
 
-        .messageInfo {
-          font-weight: bold;
-          font-size: 0.7rem;
-          margin-bottom: 0.5rem;
-        }
+      .allMessages {
+        max-width: 500px;
+        margin: 0 auto;
+        display: flex;
+        flex-flow: column;
+        gap: 1rem;
+        margin-bottom: 4rem;
 
-        .messageTitle {
-          font-size: 1.2rem;
-          margin-bottom: 0.5rem;
+        text-align: center;
+
+        li {
+          background-color: #fff;
+          border-radius: 1rem;
+          padding: 1rem;
+          box-shadow: $shadow-light;
+
+          .messageInfo {
+            font-weight: bold;
+            font-size: 0.7rem;
+            margin-bottom: 0.5rem;
+          }
+
+          .messageTitle {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+          }
         }
       }
     }
