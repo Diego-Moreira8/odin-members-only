@@ -22,7 +22,13 @@ indexRouter.get("/", async (req, res, next) => {
     )
     .then((result) => {
       const messages = result.rows;
-      res.render("home", { user: req.user, error: null, messages });
+      res.render("layout", {
+        template: "home",
+        title: "Início",
+        user: req.user,
+        error: null,
+        messages,
+      });
     })
     .catch((err) => next(err));
 });

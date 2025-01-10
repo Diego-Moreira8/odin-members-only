@@ -2,7 +2,12 @@ const { body, validationResult } = require("express-validator");
 const { db } = require("../database/config");
 
 const getNewMessageForm = (req, res, next) => {
-  res.render("new-message", { user: req.user, errors: [] });
+  res.render("layout", {
+    template: "new-message",
+    title: "Nova Mensagem",
+    user: req.user,
+    errors: [],
+  });
 };
 
 const postNewMessage = [
@@ -22,9 +27,12 @@ const postNewMessage = [
     const errors = validationResult(req);
 
     if (!errors.isEmpty()) {
-      return res
-        .status(400)
-        .render("new-message", { user: req.user, errors: errors.array() });
+      return res.status(400).render("layout", {
+        template: "new-message",
+        title: "Nova Mensagem",
+        user: req.user,
+        errors: errors.array(),
+      });
     }
 
     const { title, content } = req.body;

@@ -61,7 +61,7 @@ const signUpValidators = [
 ];
 
 const getLogIn = (req, res, next) => {
-  res.render("log-in", { errors: [] });
+  res.render("layout", { template: "log-in", title: "Entrar", errors: [] });
 };
 
 const postLogIn = [
@@ -70,7 +70,11 @@ const postLogIn = [
   function validateForm(req, res, next) {
     const formErrors = validationResult(req);
     if (!formErrors.isEmpty()) {
-      return res.status(400).render("log-in", { errors: formErrors.array() });
+      return res.status(400).render("layout", {
+        template: "log-in",
+        title: "Entrar",
+        errors: formErrors.array(),
+      });
     }
     next();
   },
@@ -82,9 +86,11 @@ const postLogIn = [
       }
 
       if (!user) {
-        return res
-          .status(401)
-          .render("log-in", { errors: [{ msg: info.message }] });
+        return res.status(401).render("layout", {
+          template: "log-in",
+          title: "Entrar",
+          errors: [{ msg: info.message }],
+        });
       }
 
       req.logIn(user, (err) => {
@@ -107,7 +113,12 @@ const getLogOut = (req, res, next) => {
 };
 
 const getSignUp = (req, res, next) => {
-  res.render("sign-up", { errors: [] });
+  res.render("layout", {
+    template: "sign-up",
+    title: "Registrar",
+    errors: [],
+    full_name: "",
+  });
 };
 
 const postSignUp = [
@@ -116,12 +127,12 @@ const postSignUp = [
   async function validateForm(req, res, next) {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-      return res
-        .status(400)
-        .render("sign-up", {
-          errors: errors.array(),
-          full_name: req.body.full_name,
-        });
+      return res.status(400).render("layout", {
+        template: "sign-up",
+        title: "Registrar",
+        errors: errors.array(),
+        full_name: req.body.full_name,
+      });
     }
 
     const { full_name, username, password } = req.body;
