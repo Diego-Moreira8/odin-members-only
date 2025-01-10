@@ -1,0 +1,90 @@
+$main-color: #1d3557;
+$secondary-color: #457b9d;
+$background-color: #f1faee;
+$text-color: #242424;
+$danger: #e63946;
+
+h1,
+h2 {
+  font-weight: bold;
+}
+h1 {
+  font-size: 1.75rem;
+}
+h2 {
+  font-size: 1.5rem;
+}
+
+body {
+  font-family: sans-serif;
+  background-color: $background-color;
+  display: flex;
+  flex-flow: column;
+  min-height: 100dvh;
+
+  header {
+    background-color: $main-color;
+    color: $background-color;
+    padding: 0.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+
+    .user {
+      background-color: $secondary-color;
+      width: fit-content;
+      padding: 0.25rem 0.5rem;
+      border-radius: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+
+      .memberBadge,
+      .adminBadge {
+        padding: 0.1rem 0.5rem;
+        border-radius: 0.5rem;
+        color: $text-color;
+        font-weight: bold;
+        font-size: 0.6rem;
+      }
+      .memberBadge {
+        background-color: gold;
+      }
+      .adminBadge {
+        background-color: $danger;
+      }
+    }
+
+    nav {
+      ul {
+        width: fit-content;
+        display: flex;
+        gap: 1rem;
+
+        li {
+          a {
+            color: $background-color;
+          }
+        }
+      }
+    }
+  }
+
+  main {
+    flex-grow: 1;
+    padding: 1rem;
+  }
+
+  footer {
+    background-color: $secondary-color;
+    color: $background-color;
+    padding: 0.5rem;
+    text-align: center;
+
+    a {
+      color: $background-color;
+    }
+  }
+}

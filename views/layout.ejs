@@ -3,20 +3,24 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Mensagens <%= locals.title ? "| " + locals.title : "" %></title>
 
-    <style>
-      :root {
-        font-family: sans-serif;
-      }
-    </style>
+    <link rel="stylesheet" href="stylesheets/reset.css" />
+    <link rel="stylesheet" href="stylesheets/style.css" />
+
+    <title>Mensagens <%= locals.title ? "| " + locals.title : "" %></title>
   </head>
 
   <body>
     <%- include("navbar") %>
 
-    <hr />
+    <main><%- include(locals.template) %></main>
 
-    <%- include(locals.template) %>
+    <footer>
+      Construído por
+      <a href="https://diegomoreira.vercel.app/" target="_blank"
+        >Diego Moreira</a
+      >
+      em 2025
+    </footer>
   </body>
 </html>

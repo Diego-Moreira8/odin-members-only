@@ -1,0 +1,76 @@
+h1,
+h2 {
+  font-weight: bold;
+}
+
+h1 {
+  font-size: 1.75rem;
+}
+
+h2 {
+  font-size: 1.5rem;
+}
+
+body {
+  font-family: sans-serif;
+  background-color: #f1faee;
+  display: flex;
+  flex-flow: column;
+  min-height: 100dvh;
+}
+body header {
+  background-color: #1d3557;
+  color: #f1faee;
+  padding: 0.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+body header .user {
+  background-color: #457b9d;
+  width: fit-content;
+  padding: 0.25rem 0.5rem;
+  border-radius: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+body header .user .memberBadge,
+body header .user .adminBadge {
+  padding: 0.1rem 0.5rem;
+  border-radius: 0.5rem;
+  color: #242424;
+  font-weight: bold;
+  font-size: 0.6rem;
+}
+body header .user .memberBadge {
+  background-color: gold;
+}
+body header .user .adminBadge {
+  background-color: #e63946;
+}
+body header nav ul {
+  width: fit-content;
+  display: flex;
+  gap: 1rem;
+}
+body header nav ul li a {
+  color: #f1faee;
+}
+body main {
+  flex-grow: 1;
+  padding: 1rem;
+}
+body footer {
+  background-color: #457b9d;
+  color: #f1faee;
+  padding: 0.5rem;
+  text-align: center;
+}
+body footer a {
+  color: #f1faee;
+}
+
+/*# sourceMappingURL=style.css.map */

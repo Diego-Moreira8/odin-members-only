@@ -1,26 +1,33 @@
 <header>
+  <% if (locals.user) { %> 
+    <div class="user">
+      <span class="username">
+        Olá, <%= locals.user.full_name || locals.user.username %>!
+      </span>
+      
+      <% if (locals.user.is_member) { %>
+        <span class="memberBadge">MEMBRO</span>
+      <% } %>
+      
+      <% if (locals.user.is_admin) { %>
+        <span class="adminBadge">ADMIN</span>
+      <% } %>
+    </div>
+  <% } %>
+
   <nav>
     <ul>
-      <li>
-        <a href="/">Home</a>
-      </li>
-      <% if (locals.user) { %> <% if (locals.user.is_member) { %>
-      <span>MEMBRO</span>
+      <li><a href="/">Mensagens</a></li>
+      
+      <% if (locals.user) { %> 
+        <% if (!locals.user.is_member) { %>
+          <li><a href="/seja-membro">Seja membro</a></li>
+        <% } %>
+
+        <li><a href="/log-out">Sair</a></li>
       <% } else { %>
-      <li>
-        <a href="/seja-membro">Seja membro</a>
-      </li>
-      <% } %>
-      <li>
-        <a href="/log-out">Sair</a>
-      </li>
-      <% } else { %>
-      <li>
-        <a href="/log-in">Entrar</a>
-      </li>
-      <li>
-        <a href="/sign-up">Criar conta</a>
-      </li>
+        <li><a href="/log-in">Entrar</a></li>
+        <li><a href="/sign-up">Criar conta</a></li>
       <% } %>
     </ul>
   </nav>

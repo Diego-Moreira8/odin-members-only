@@ -3,7 +3,7 @@ const pageNotFound = (req, res, next) => {
 };
 
 const errorHandler = (err, req, res, next) => {
-  console.error(err.stack);
+  if (err.stack) console.error(err.stack);
 
   const errStatus = err.statusCode || 500;
   const errMsg = err.message || "Erro interno do servidor";
