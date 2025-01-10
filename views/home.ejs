@@ -28,10 +28,26 @@
   <li>
     <% if (locals.user?.is_member) { %>
     <p><%= msg.full_name || msg.username %> em <%= msg.created_at %></p>
-    <% } %> <% if (msg.title) { %>
+    <% } %>
+    
+    <% if (msg.title) { %>
     <p><b><%= msg.title %></b></p>
     <% } %>
+
     <p><%= msg.content %></p>
+
+    <% if (locals.user) { %>
+      <% if (locals.user?.is_admin || msg.user_id === locals.user.id) { %>
+        <form action="<%= `/delete-message/${msg.id}` %>" method="post">
+          <button type="submit">Apagar</button>
+        </form>
+      <% } else { %>
+        <button
+          disabled="disabled"
+          title="Apenas administradores e autores podem apagar mensagens"
+        >Apagar</button>
+      <% } %>
+    <% } %>
   </li>
   <% }) %>
 </ul>

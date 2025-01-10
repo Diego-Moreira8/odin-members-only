@@ -41,4 +41,29 @@ const postNewMessage = [
   },
 ];
 
-module.exports = { getNewMessageForm, postNewMessage };
+const postDeleteMessage = async (req, res, next) => {
+  try {
+    const msgId = req.params.id;
+    const { rows } = await db.query(
+      "SELECT user_id FROM messages WHERE id = $1;",
+      [msgId]
+    );
+    if (rows.length === 0) {
+      return res.status(404).send("Mensagem não encontrada");
+    }
+
+    const authorOrAdmin = rows[0].user_id === req.user.id || req.user.is_admin;
+    if (!authorOrAdmin) {
+      return res
+        .status(401)
+        .send("Você não tem autorização para apagar esta mensagem");
+    }
+
+    await db.query("DELETE FROM messages WHERE id = $1;", [msgId]);
+    res.redirect("/");
+  } catch (err) {
+    next(err);
+  }
+};
+
+module.exports = { getNewMessageForm, postNewMessage, postDeleteMessage };
