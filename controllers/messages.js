@@ -49,14 +49,15 @@ const postDeleteMessage = async (req, res, next) => {
       [msgId]
     );
     if (rows.length === 0) {
-      return res.status(404).send("Mensagem não encontrada");
+      throw { statusCode: 404, message: "Mensagem não encontrada" };
     }
 
     const authorOrAdmin = rows[0].user_id === req.user.id || req.user.is_admin;
     if (!authorOrAdmin) {
-      return res
-        .status(401)
-        .send("Você não tem autorização para apagar esta mensagem");
+      throw {
+        statusCode: 401,
+        message: "Você não tem autorização para apagar esta mensagem",
+      };
     }
 
     await db.query("DELETE FROM messages WHERE id = $1;", [msgId]);

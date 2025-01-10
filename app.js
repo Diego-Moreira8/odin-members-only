@@ -2,8 +2,9 @@ require("dotenv").config();
 const express = require("express");
 const session = require("express-session");
 const passport = require("passport");
-const { indexRouter } = require("./routes");
 const { db } = require("./database/config");
+const { indexRouter } = require("./routes");
+const { pageNotFound, errorHandler } = require("./controllers/errors");
 
 const app = express();
 
@@ -24,6 +25,8 @@ app.use(
 );
 app.use(passport.session());
 app.use(indexRouter);
+app.use(pageNotFound);
+app.use(errorHandler);
 
 const listener = app.listen(process.env.PORT || 3000, () => {
   console.log("Listening on port " + listener.address().port);
