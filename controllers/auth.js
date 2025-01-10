@@ -31,17 +31,14 @@ const signUpValidators = [
     .withMessage("Um nome de usuário precisa ser fornecido")
     .isLength({ max: 250 })
     .withMessage("O nome de usuário pode ter no máximo 250 caracteres")
-    .custom(async function checkUsernameUnique(value, { req }) {
+    .custom(async function checkUsernameUnique(value) {
       await db
         .query("SELECT * FROM users WHERE username = $1;", [value])
         .then((result) => {
           if (result.rowCount > 0) {
-            throw new Error("Este nome de usuário já existe");
+            throw new Error(`O usuário ${value} já existe`);
           }
           return true;
-        })
-        .catch((err) => {
-          throw err;
         });
     }),
 
@@ -119,7 +116,12 @@ const postSignUp = [
   async function validateForm(req, res, next) {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-      return res.status(400).render("sign-up", { errors: errors.array() });
+      return res
+        .status(400)
+        .render("sign-up", {
+          errors: errors.array(),
+          full_name: req.body.full_name,
+        });
     }
 
     const { full_name, username, password } = req.body;
