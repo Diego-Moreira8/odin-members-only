@@ -1,0 +1,27 @@
+<header>
+  <nav>
+    <ul>
+      <li>
+        <a href="/">Home</a>
+      </li>
+      <% if (locals.user) { %> <% if (locals.user.is_member) { %>
+      <span>MEMBRO</span>
+      <% } else { %>
+      <li>
+        <a href="/seja-membro">Seja membro</a>
+      </li>
+      <% } %>
+      <li>
+        <a href="/log-out">Sair</a>
+      </li>
+      <% } else { %>
+      <li>
+        <a href="/log-in">Entrar</a>
+      </li>
+      <li>
+        <a href="/sign-up">Criar conta</a>
+      </li>
+      <% } %>
+    </ul>
+  </nav>
+</header>
