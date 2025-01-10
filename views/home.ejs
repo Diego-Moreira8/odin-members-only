@@ -19,7 +19,11 @@
   <% locals.messages.forEach(msg => { %>
   <li>
     <% if (locals.user?.is_member) { %>
-    <p><%= msg.full_name || msg.username %> em <%= msg.created_at %></p>
+    <p>
+      <%= msg.full_name || msg.username %>
+       em 
+      <span class="msgDate"><%= msg.created_at %></span>
+    </p>
     <% } %>
     
     <% if (msg.title) { %>
@@ -46,3 +50,5 @@
 <% } else { %>
 <p><i>Ninguém postou uma mensagem ainda!</i></p>
 <% } %>
+
+<%- include("formatClientDates") %>

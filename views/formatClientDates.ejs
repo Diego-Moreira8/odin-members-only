@@ -1,0 +1,14 @@
+<script>
+  // Change messages dates from UTC to client's local time
+  onload = () => {
+    const allMsgsDateElements = document.querySelectorAll(".msgDate");
+
+    allMsgsDateElements.forEach((dateElement) => {
+      const userLocalDate = new Date(
+        dateElement.textContent.trim()
+      ).toLocaleString();
+
+      dateElement.textContent = userLocalDate;
+    });
+  };
+</script>
