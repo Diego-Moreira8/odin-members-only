@@ -1,16 +1,18 @@
-<h1>Torne-se um Membro</h1>
+<div class="membershipContainer">
+  <h1>Torne-se um Membro</h1>
 
-<% if (locals.user.is_member) { %>
-<p>Você já é um membro!</p>
-<% } else { %>
-<form action="/seja-membro" method="post">
-  <div class="formRow">
-    <label for="secret">Senha para adesão:</label>
-    <input type="text" name="secret" id="secret" />
-    <% if (locals.error) { %>
-    <p><i><%= locals.error %></i></p>
-    <% } %>
-  </div>
-  <button type="submit">Enviar</button>
-</form>
-<% } %>
+  <% if (locals.user.is_member) { %>
+  <p>Você já é um membro!</p>
+  <% } else { %>
+  <form action="/seja-membro" method="post">
+    <div class="formRow">
+      <label for="secret">Senha para adesão:</label>
+      <input type="text" name="secret" id="secret" />
+      <% if (locals.error) { %>
+      <p><i><%= locals.error %></i></p>
+      <% } %>
+    </div>
+    <button type="submit" class="ok">Enviar</button>
+  </form>
+  <% } %>
+</div>

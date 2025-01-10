@@ -1,5 +1,5 @@
-<% if (errors) { %>
-<ul>
+<% if (errors.length > 0) { %>
+<ul class="errorsList tooltip warn">
   <% errors.forEach(err => { %>
   <li><%= err.msg %></li>
   <% }) %>
