@@ -1,18 +1,63 @@
-$main-color: #1d3557;
+$primary-color: #1d3557;
 $secondary-color: #457b9d;
-$background-color: #f1faee;
+$background-color: #f7f7f7;
 $text-color: #242424;
-$danger: #e63946;
+$ok: #307900;
+$danger: #96131d;
+$shadow: 2px 2px 10px 0px rgba(0, 0, 0, 0.5);
+$shadow-light: 2px 2px 10px 0px rgba(0, 0, 0, 0.1);
 
 h1,
 h2 {
+  text-align: center;
   font-weight: bold;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
 }
 h1 {
   font-size: 1.75rem;
 }
 h2 {
   font-size: 1.5rem;
+}
+i {
+  font-style: italic;
+}
+b {
+  font-weight: bold;
+}
+p {
+  margin: 1rem 0;
+}
+button {
+  background-color: $background-color;
+  border: 1px solid $background-color;
+  padding: 0.25rem 1rem;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+
+  &.danger {
+    background-color: $danger;
+    border: 1px solid $danger;
+    color: $background-color;
+  }
+}
+
+.tooltip {
+  padding: 1rem;
+  border-radius: 1rem;
+  box-shadow: $shadow;
+  margin-bottom: 1rem;
+
+  &.info {
+    background-color: $secondary-color;
+    color: $background-color;
+    a {
+      color: $background-color;
+    }
+  }
 }
 
 body {
@@ -23,7 +68,7 @@ body {
   min-height: 100dvh;
 
   header {
-    background-color: $main-color;
+    background-color: $primary-color;
     color: $background-color;
     padding: 0.5rem;
     display: flex;
@@ -53,6 +98,7 @@ body {
         background-color: gold;
       }
       .adminBadge {
+        color: $background-color;
         background-color: $danger;
       }
     }
@@ -75,6 +121,48 @@ body {
   main {
     flex-grow: 1;
     padding: 1rem;
+
+    a.newMsg {
+      position: fixed;
+      bottom: 3rem;
+      right: 1rem;
+      background-color: $ok;
+      color: $background-color;
+      font-weight: bold;
+      padding: 0.75rem 1rem;
+      border-radius: 1rem;
+      text-decoration: none;
+      box-shadow: $shadow;
+    }
+
+    .allMessages {
+      max-width: 500px;
+      margin: 0 auto;
+      display: flex;
+      flex-flow: column;
+      gap: 1rem;
+      margin-bottom: 4rem;
+
+      text-align: center;
+
+      li {
+        background-color: #fff;
+        border-radius: 1rem;
+        padding: 1rem;
+        box-shadow: $shadow-light;
+
+        .messageInfo {
+          font-weight: bold;
+          font-size: 0.7rem;
+          margin-bottom: 0.5rem;
+        }
+
+        .messageTitle {
+          font-size: 1.2rem;
+          margin-bottom: 0.5rem;
+        }
+      }
+    }
   }
 
   footer {

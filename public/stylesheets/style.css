@@ -1,6 +1,9 @@
 h1,
 h2 {
+  text-align: center;
   font-weight: bold;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
 }
 
 h1 {
@@ -11,16 +14,57 @@ h2 {
   font-size: 1.5rem;
 }
 
+i {
+  font-style: italic;
+}
+
+b {
+  font-weight: bold;
+}
+
+p {
+  margin: 1rem 0;
+}
+
+button {
+  background-color: #f7f7f7;
+  border: 1px solid #f7f7f7;
+  padding: 0.25rem 1rem;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+}
+button.danger {
+  background-color: #96131d;
+  border: 1px solid #96131d;
+  color: #f7f7f7;
+}
+
+.tooltip {
+  padding: 1rem;
+  border-radius: 1rem;
+  box-shadow: 2px 2px 10px 0px rgba(0, 0, 0, 0.5);
+  margin-bottom: 1rem;
+}
+.tooltip.info {
+  background-color: #457b9d;
+  color: #f7f7f7;
+}
+.tooltip.info a {
+  color: #f7f7f7;
+}
+
 body {
   font-family: sans-serif;
-  background-color: #f1faee;
+  background-color: #f7f7f7;
   display: flex;
   flex-flow: column;
   min-height: 100dvh;
 }
 body header {
   background-color: #1d3557;
-  color: #f1faee;
+  color: #f7f7f7;
   padding: 0.5rem;
   display: flex;
   flex-wrap: wrap;
@@ -49,7 +93,8 @@ body header .user .memberBadge {
   background-color: gold;
 }
 body header .user .adminBadge {
-  background-color: #e63946;
+  color: #f7f7f7;
+  background-color: #96131d;
 }
 body header nav ul {
   width: fit-content;
@@ -57,20 +102,56 @@ body header nav ul {
   gap: 1rem;
 }
 body header nav ul li a {
-  color: #f1faee;
+  color: #f7f7f7;
 }
 body main {
   flex-grow: 1;
   padding: 1rem;
 }
+body main a.newMsg {
+  position: fixed;
+  bottom: 3rem;
+  right: 1rem;
+  background-color: #307900;
+  color: #f7f7f7;
+  font-weight: bold;
+  padding: 0.75rem 1rem;
+  border-radius: 1rem;
+  text-decoration: none;
+  box-shadow: 2px 2px 10px 0px rgba(0, 0, 0, 0.5);
+}
+body main .allMessages {
+  max-width: 500px;
+  margin: 0 auto;
+  display: flex;
+  flex-flow: column;
+  gap: 1rem;
+  margin-bottom: 4rem;
+  text-align: center;
+}
+body main .allMessages li {
+  background-color: #fff;
+  border-radius: 1rem;
+  padding: 1rem;
+  box-shadow: 2px 2px 10px 0px rgba(0, 0, 0, 0.1);
+}
+body main .allMessages li .messageInfo {
+  font-weight: bold;
+  font-size: 0.7rem;
+  margin-bottom: 0.5rem;
+}
+body main .allMessages li .messageTitle {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
 body footer {
   background-color: #457b9d;
-  color: #f1faee;
+  color: #f7f7f7;
   padding: 0.5rem;
   text-align: center;
 }
 body footer a {
-  color: #f1faee;
+  color: #f7f7f7;
 }
 
 /*# sourceMappingURL=style.css.map */

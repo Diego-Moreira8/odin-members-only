@@ -1,33 +1,34 @@
 <% if (locals.user) { %>
-<h1>Bem-vindo, <%= locals.user.full_name || locals.user.username %>!</h1>
+<a class="newMsg" href="/criar-mensagem">Nova mensagem</a>
 
-<% if (!locals.user.is_member) { %>
-<p>
-  Você precisa ser um membro para ver por quem e quando as mensagens foram
-  postadas!
-</p>
-<a href="/seja-membro">Torne-se um membro</a>
+  <% if (!locals.user.is_member) { %>
+    <div class="tooltip info">
+      <p>
+        <a href="/seja-membro">Torne-se um membro</a>
+        para ver por quem e quando as mensagens foram postadas!
+      </p>
+    </div>
+  <% } %>
 <% } %>
 
-<a href="/criar-mensagem">Criar uma mensagem</a>
-<% } %>
-
-<h2>Mensagens</h2>
+<h1>Mensagens</h1>
 
 <% if (locals.messages.length > 0) { %>
-<ul>
+<ul class="allMessages">
   <% locals.messages.forEach(msg => { %>
   <li>
     <% if (locals.user?.is_member) { %>
-    <p>
-      <%= msg.full_name || msg.username %>
-       em 
-      <span class="msgDate"><%= msg.created_at %></span>
+    <p class="messageInfo">
+      <i>
+        <%= msg.full_name || msg.username %>
+         em
+        <span class="msgDate"><%= msg.created_at %></span>
+      </i>
     </p>
     <% } %>
     
     <% if (msg.title) { %>
-    <p><b><%= msg.title %></b></p>
+    <h2 class="messageTitle"><%= msg.title %></h2>
     <% } %>
 
     <p><%= msg.content %></p>
@@ -35,13 +36,8 @@
     <% if (locals.user) { %>
       <% if (locals.user?.is_admin || msg.user_id === locals.user.id) { %>
         <form action="<%= `/delete-message/${msg.id}` %>" method="post">
-          <button type="submit">Apagar</button>
+          <button type="submit" class="danger">Apagar</button>
         </form>
-      <% } else { %>
-        <button
-          disabled="disabled"
-          title="Apenas administradores e autores podem apagar mensagens"
-        >Apagar</button>
       <% } %>
     <% } %>
   </li>
