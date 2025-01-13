@@ -6,6 +6,7 @@ const passport = require("passport");
 const { db } = require("./database/config");
 const { indexRouter } = require("./routes");
 const { pageNotFound, errorHandler } = require("./controllers/errors");
+const morgan = require("morgan");
 
 const app = express();
 
@@ -14,6 +15,7 @@ app.set("view engine", "ejs");
 
 app.use(express.static(path.join(__dirname, "public")));
 app.use(express.urlencoded({ extended: true }));
+app.use(morgan("dev"));
 app.use(
   session({
     store: new (require("connect-pg-simple")(session))({
