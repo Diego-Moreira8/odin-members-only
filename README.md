@@ -1,6 +1,6 @@
 # Apenas Membros
 
-Este é um projeto de um app de mensagens [The Odin Project](https://www.theodinproject.com/) para fixar o aprendizado sobre autenticação em aplicações NodeJS. Um exemplo do projeto está online em: [odin-members-only.glitch.me](https://odin-members-only.glitch.me/).
+Este é um projeto de um app de mensagens proposto pelo site [The Odin Project](https://www.theodinproject.com/) para fixar o aprendizado sobre autenticação em aplicações NodeJS. Um exemplo do projeto está online em: [odin-members-only.glitch.me](https://odin-members-only.glitch.me/).
 
 ![Captura de tela do projeto](./public/images/project-screenshot.png)
 
