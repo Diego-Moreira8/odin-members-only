@@ -2,7 +2,12 @@
   "name": "odin-members-only",
   "version": "1.0.0",
   "main": "index.js",
+  "engines": {
+    "_comment": "Glitch.com latest version",
+    "node": "16.14.2"
+  },
   "scripts": {
+    "start": "node app.js",
     "dev": "nodemon app.js"
   },
   "keywords": [],
