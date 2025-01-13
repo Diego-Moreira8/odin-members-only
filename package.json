@@ -8,7 +8,8 @@
   },
   "scripts": {
     "start": "node app.js",
-    "dev": "nodemon app.js"
+    "dev": "nodemon app.js",
+    "reset-db": "node database/createTables.js"
   },
   "keywords": [],
   "author": "",

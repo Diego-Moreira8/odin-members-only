@@ -31,5 +31,5 @@ app.use(pageNotFound);
 app.use(errorHandler);
 
 const listener = app.listen(process.env.PORT || 3000, () => {
-  console.log("Listening on port " + listener.address().port);
+  console.log(`Listening on http://localhost:${listener.address().port}/`);
 });
