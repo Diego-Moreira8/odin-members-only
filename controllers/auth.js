@@ -33,7 +33,9 @@ const signUpValidators = [
     .withMessage("O nome de usuário pode ter no máximo 250 caracteres")
     .custom(async function checkUsernameUnique(value) {
       await db
-        .query("SELECT * FROM users WHERE username = $1;", [value])
+        .query("SELECT * FROM users WHERE username = $1;", [
+          value.toLowerCase(),
+        ])
         .then((result) => {
           if (result.rowCount > 0) {
             throw new Error(`O usuário ${value} já existe`);
@@ -76,6 +78,12 @@ const postLogIn = [
         errors: formErrors.array(),
       });
     }
+    next();
+  },
+
+  function lowerCaseUsername(req, res, next) {
+    console.log(req.body.username);
+    req.body.username = req.body.username.toLowerCase();
     next();
   },
 
@@ -150,7 +158,7 @@ const postSignUp = [
             INSERT INTO users (full_name, username, password)
             VALUES ($1, $2, $3);
           `,
-            [full_name, username, hashedPassword]
+            [full_name, username.toLowerCase(), hashedPassword]
           )
           .then(() => res.redirect("/"))
           .catch((err) => next(err));
