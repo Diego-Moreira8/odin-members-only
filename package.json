@@ -9,6 +9,7 @@
   "scripts": {
     "start": "node app.js",
     "dev": "nodemon app.js",
+    "sass-watch": "sass scss/main.scss:public/stylesheets/style.css --watch",
     "reset-db": "node database/createTables.js"
   },
   "keywords": [],

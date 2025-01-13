@@ -58,14 +58,17 @@ button {
 label {
   padding-bottom: 0.25rem;
 }
-input {
+input,
+textarea {
+  box-sizing: border-box;
+  display: block;
+  width: 100%;
   padding: 0.5rem;
-  font-size: 1rem;
   border: 1px solid $text-color;
   border-radius: 0.25rem;
-  width: 450px;
+  font-family: inherit;
+  font-size: 1rem;
 }
-
 .tooltip {
   padding: 1rem;
   border-radius: 1rem;
@@ -148,10 +151,14 @@ body {
   }
 
   main {
+    width: calc(100% - 2rem); // For inputs to follow the width
     flex-grow: 1;
     padding: 1rem;
-    max-width: 500px;
     margin: 0 auto;
+
+    @media (min-width: 600px) {
+      width: 500px;
+    }
 
     .messagesContainer {
       display: flex;
@@ -172,6 +179,7 @@ body {
       }
 
       .allMessages {
+        width: 100%;
         margin: 0 auto;
         display: flex;
         flex-flow: column;
@@ -202,7 +210,8 @@ body {
 
     .logInContainer,
     .signUpContainer,
-    .membershipContainer {
+    .membershipContainer,
+    .newMessageContainer {
       .errorsList {
         list-style-type: disc;
         padding-left: 2rem;
