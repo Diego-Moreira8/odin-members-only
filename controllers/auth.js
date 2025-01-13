@@ -159,7 +159,7 @@ const postSignUp = [
           `,
             [full_name, username.toLowerCase(), hashedPassword]
           )
-          .then(() => res.redirect("/"))
+          .then(() => res.redirect("/log-in"))
           .catch((err) => next(err));
       }
     );
