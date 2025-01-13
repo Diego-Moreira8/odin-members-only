@@ -82,7 +82,6 @@ const postLogIn = [
   },
 
   function lowerCaseUsername(req, res, next) {
-    console.log(req.body.username);
     req.body.username = req.body.username.toLowerCase();
     next();
   },
